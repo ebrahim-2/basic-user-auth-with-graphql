@@ -15,7 +15,7 @@ async function register(root, { data }, context, info) {
 async function login(root, { data }, context, info) {
   const user = await db.User.findOne({ email: data.email });
 
-  if (!user) throw new Error("There is no email with this email");
+  if (!user) throw new Error("There is no user with this email");
 
   const matched = await bcrypt.compare(data.password, user.password);
   if (!matched) throw new Error("Wrong password");
